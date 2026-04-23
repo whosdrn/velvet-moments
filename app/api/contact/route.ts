@@ -1,16 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+})
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
     const { nom, prenom, email, telephone, typeEvenement, dateEvenement, nbConvives, message } = body
 
-    const { error } = await resend.emails.send({
-      from: 'Velvet Moments <onboarding@resend.dev>',
-      to: ['dorianchauvin76@gmail.com'],
+    await transporter.sendMail({
+      from: `"Velvet Moments" <${process.env.GMAIL_USER}>`,
+      to: process.env.GMAIL_USER,
       replyTo: email,
       subject: `Nouvelle demande — ${typeEvenement} — ${prenom} ${nom}`,
       html: `
@@ -70,13 +76,9 @@ export async function POST(req: NextRequest) {
       `,
     })
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Contact form error:', err)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    return NextResponse.json({ error: 'Erreur envoi email' }, { status: 500 })
   }
 }
