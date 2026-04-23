@@ -56,9 +56,18 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    console.log('Contact form submitted:', data)
-    router.push('/contact/confirmation')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) throw new Error('Erreur envoi')
+      router.push('/contact/confirmation')
+    } catch {
+      alert('Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.')
+      setLoading(false)
+    }
   }
 
   return (
