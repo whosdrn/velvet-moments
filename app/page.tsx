@@ -54,10 +54,6 @@ const galleryImages = [
   { src: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=600&q=80', alt: 'Réception', span: '' },
 ]
 
-const partners = [
-  'Le Grand Véfour', 'Hôtel de Crillon', 'Château Margaux',
-  'Ladurée', 'Dior Maison', 'Château Vaux-le-Vicomte',
-]
 
 export default function HomePage() {
   return (
@@ -185,90 +181,6 @@ export default function HomePage() {
               Voir la galerie complète
             </Link>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── Numbers ─── */}
-      <section className="py-24 bg-ivoire border-y border-or/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '250+', label: 'Événements réalisés' },
-              { value: '12', label: "Années d'expertise" },
-              { value: '98%', label: 'Clients satisfaits' },
-              { value: '40+', label: 'Partenaires d\'exception' },
-            ].map((stat, i) => (
-              <AnimatedSection key={stat.label} delay={i * 0.1}>
-                <p className="font-playfair text-5xl md:text-6xl text-or mb-2">{stat.value}</p>
-                <p className="font-lato text-xs tracking-widest uppercase text-noir/55">{stat.label}</p>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Testimonials ─── */}
-      <section className="py-28 bg-noir">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <AnimatedSection className="text-center mb-16">
-            <p className="font-cormorant text-xs tracking-[0.5em] uppercase text-or mb-4">Témoignages</p>
-            <h2 className="font-playfair text-4xl md:text-5xl text-white mb-4">Ils nous font confiance</h2>
-            <div className="w-12 h-px bg-or mx-auto" />
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                quote: "Velvet Moments a su transformer notre mariage en un véritable conte de fées. Chaque détail était parfait, chaque instant magique. Nous leur serons éternellement reconnaissants.",
-                author: "Sophie & Thomas M.",
-                event: "Mariage — Château de Vaux-le-Vicomte",
-              },
-              {
-                quote: "Pour notre gala annuel, l'équipe de Velvet Moments a orchestré un événement d'une élégance absolue. Nos 300 invités ont été subjugués. Une prestation hors pair.",
-                author: "Jean-Philippe D.",
-                event: "Gala corporate — Hôtel de Crillon",
-              },
-              {
-                quote: "Un anniversaire dont je me souviendrai toute ma vie. L'attention portée à chaque détail, la décoration florale sublime, le service impeccable... Tout était au-delà de mes espérances.",
-                author: "Isabelle R.",
-                event: "Anniversaire privé — Paris 8e",
-              },
-            ].map((t, i) => (
-              <AnimatedSection key={i} delay={i * 0.15}>
-                <div className="border border-white/10 p-8 h-full">
-                  <p className="font-cormorant text-4xl text-or mb-4">"</p>
-                  <p className="font-cormorant text-lg text-white/75 leading-relaxed italic mb-8">
-                    {t.quote}
-                  </p>
-                  <div className="border-t border-white/10 pt-6">
-                    <p className="font-playfair text-sm text-white">{t.author}</p>
-                    <p className="font-lato text-xs text-or mt-1">{t.event}</p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Partners ─── */}
-      <section className="py-20 bg-ivoire">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <AnimatedSection className="text-center mb-12">
-            <p className="font-lato text-xs tracking-widest uppercase text-noir/40 mb-2">
-              Ils nous font confiance depuis des années
-            </p>
-            <div className="w-12 h-px bg-or/40 mx-auto" />
-          </AnimatedSection>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-            {partners.map((p, i) => (
-              <AnimatedSection key={p} delay={i * 0.08}>
-                <span className="font-playfair text-lg md:text-xl text-noir/25 hover:text-or transition-colors duration-300 cursor-default">
-                  {p}
-                </span>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </section>
 
